@@ -1,26 +1,29 @@
-import viteLogo from "/vite.svg";
-import "./App.css";
-import pic from "./assets/woman.jpeg";
-import Header from "./header.jsx";
-import Button from "./COMPONENT/button.jsx";
+ import Header from "./header"
+import { useState } from 'react';
+import { Context } from './context';
+import Sidebar from "./sidebar";
+
+
 
 function App() {
-  const text = "Welcome to my First React App";
-
+  const [togglebar,setTogglebar]= useState(false);
   return (
-    // react frament
-    <main className="bg-grey-700">
-      <Header />
-      <section className="h-[90vh] text-white flex justify-center gap-3 items-center flex-col">
-        <h1 className="text-[5vw] font-mono font-bold">{text}</h1>
-        <section className="flex gap-3">
-          <Button bg={"bg-blue-500"} name="Get Started" />
-          <Button bg={"bg-[whitesmoke] text-[black]"} 
-          name="See Documentation" />
-        </section>
-      </section>
-    </main>
+    <div>
+   
+        <Context.Provider value={{ togglebar, setTogglebar }}>
+          <Header />
+
+          <section className="flex">
+
+          <Sidebar />
+          <section className="p-4">
+            <strong> Hey [Name]</strong>
+            <h3>Welcome to your bashboard</h3>
+          </section>
+          </section>
+        </Context.Provider>
+    </div>
   );
 }
-export default App;
 
+export default App;     
